@@ -4,51 +4,52 @@ import java.util.Arrays;
 
 public class ArrayQueueImpl {
     private int[] arr = new int[10];
-    private int front = -1;
+    private int front = 0;
     private int rear = 0;
-
+    private int size = 0;
 
     public int peek() {
-        if(front==-1){
+        if (isEmpty()) {
             System.out.println("Queue is empty");
             return -1;
         }
-        else{
-            return arr[0];
-        }
-//implement
+        return arr[front];
     }
-    public void enqueue(int obj){
-        if(arr.length==rear) resize();
-        arr[rear++]=obj;
-        front=0;
-//implement
+
+    public void enqueue(int obj) {
+        if (size == arr.length) resize();
+        arr[rear] = obj;
+        rear = (rear + 1) % arr.length; // Wrap around for circular behavior
+        size++;
     }
+
     public int dequeue() {
-        int result=peek();
-        if(result==-1) return result;
-        else{
-            result=arr[0];
-            for(int i=0;i<=rear;i++){
-                arr[i]=arr[i+1];
-            }
-            arr[rear]=0;
-            rear--;
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return -1;
         }
+        int result = arr[front];
+        front = (front + 1) % arr.length; // Move the front pointer forward
+        size--;
         return result;
-//implement
     }
-    public boolean isEmpty(){
-//implement
-        return rear==0;
+
+    public boolean isEmpty() {
+        return size == 0;
     }
-    public int size(){
-//implement
-        return rear;
+
+    public int size() {
+        return size;
     }
-    private void resize(){
-//implement
-        arr= Arrays.copyOf(arr,arr.length*2);
+
+    private void resize() {
+        int[] newArr = new int[arr.length * 2];
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[(front + i) % arr.length];
+        }
+        arr = newArr;
+        front = 0;
+        rear = size;
     }
 }
 

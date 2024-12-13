@@ -14,5 +14,12 @@ public class Main {
         queue.dequeue();
         System.out.println("Peeking... :"+queue.peek());
         queue.dequeue();
+        System.out.println("Peeking... :"+queue.peek());
+        queue.dequeue();
+        System.out.println("Peeking... :"+queue.peek());
+        queue.dequeue();
+        System.out.println("Peeking... :"+queue.peek());
+        queue.dequeue();
+
     }
 }
