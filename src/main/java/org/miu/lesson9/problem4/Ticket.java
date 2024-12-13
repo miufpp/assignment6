@@ -10,7 +10,8 @@ public class Ticket {
     DateTimeFormatter df=DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
     public Ticket(int id,String description) {
         this.description = description;
-        this.id="TKT0000"+id;
+        this.id=String.format("TKT%06d", id);
+        //this.id="TKT0000"+id;
         this.timestamp= LocalDateTime.now();
     }
 
