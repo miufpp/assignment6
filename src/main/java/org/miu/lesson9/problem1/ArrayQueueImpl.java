@@ -19,7 +19,7 @@ public class ArrayQueueImpl {
     public void enqueue(int obj) {
         if (size == arr.length) resize();
         arr[rear] = obj;
-        rear = (rear + 1) % arr.length; // Wrap around for circular behavior
+        rear = (rear + 1) % arr.length;
         size++;
     }
 
@@ -29,7 +29,7 @@ public class ArrayQueueImpl {
             return -1;
         }
         int result = arr[front];
-        front = (front + 1) % arr.length; // Move the front pointer forward
+        front = (front + 1) % arr.length;
         size--;
         return result;
     }
